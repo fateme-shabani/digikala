@@ -11,13 +11,20 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
+    "@radix-ui/react-accordion": "^1.2.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^7.1.1",
-    "react-router-dom": "^7.1.1"
+    "react-router-dom": "^7.1.1",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.5",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
@@ -33,10 +40,8 @@
     "typescript-eslint": "^8.18.2",
     "vite": "^4.4.9"
   },
-    "resolutions": {
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0"
-    }
-  
-  
+  "resolutions": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }

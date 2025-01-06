@@ -1,14 +1,8 @@
-import { Button, ButtonGroup } from "@material-tailwind/react";
 import "./App.css";
-import { TooltipDefault } from "./TooltipDefault";
+import { Navbar } from "./components/header/Navbar";
 
 function App() {
-  return (
-    <>
-      <TooltipDefault />
-      
-    </>
-  );
+  return <><Navbar/></>;
 }
 
 export default App;
