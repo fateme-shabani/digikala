@@ -1,7 +1,7 @@
 import { LogoSvg } from "@/components/Svg/LogoSvg";
 
-import { SearchBar } from "./components/SearchBar";
 import { SignIn } from "./components/SignIn";
+import { SearchBar } from "./components/SearchBar";
 
 export function Nav() {
   return (
@@ -11,7 +11,6 @@ export function Nav() {
           <LogoSvg />
           <SearchBar />
         </div>
-
         <SignIn />
       </div>
     </>

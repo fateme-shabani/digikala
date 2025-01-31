@@ -10,9 +10,11 @@ export function SignIn() {
         <Icons name="ph:sign-in" size={24} className="text-gray-700" />
       </button>
       <span className="w-1 h-6 text-gray-200 border-l-2"></span>
-      <Icons name="ph:shopping-cart-simple" size={24} className="text-gray-700" />
-
-
+      <Icons
+        name="ph:shopping-cart-simple"
+        size={24}
+        className="text-gray-700"
+      />
     </div>
   );
 }
