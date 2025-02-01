@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 import { BaseIcon } from "@/components/BaseIcon";
-import { useClickOutSide } from "@/helper/hooks/useClickOutSide";
+import { useClickOutSide } from "@/hooks/useClickOutSide";
+import { useDebounce } from "@/hooks/useDebounce";
 import { fetchSearchResults } from "@/services/endpoint";
-import { useDebounce } from "@/helper/hooks/useDebounce";
-import { LoadingSvg } from "@/components/LoadingSvg";
+import { LoadingSvg } from "@/assets/Svg/LoadingSvg";
 
 export function SearchBar() {
   const [open, setOpen] = useState(false);

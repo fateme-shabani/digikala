@@ -1,4 +1,4 @@
-import { HeaderSvg } from "@/components/Svg/HaederSvg";
+import { HeaderSvg } from "@/assets/Svg/HaederSvg";
 
 export function FixedHeader() {
   return (

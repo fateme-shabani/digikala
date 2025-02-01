@@ -1,4 +1,4 @@
-import { LogoSvg } from "@/components/Svg/LogoSvg";
+import { LogoSvg } from "@/assets/Svg/LogoSvg";
 
 import { SignIn } from "./components/SignIn";
 import { SearchBar } from "./components/SearchBar";

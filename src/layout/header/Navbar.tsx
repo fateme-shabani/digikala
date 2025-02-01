@@ -1,4 +1,5 @@
-import { HeaderSvg } from "../Svg/HaederSvg.tsx";
+import { HeaderSvg } from "@/assets/Svg/HaederSvg.tsx";
+
 import { Nav } from "./nav/index.tsx";
 
 /**
