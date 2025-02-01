@@ -1,16 +1,27 @@
-import { Icons } from "@/components/Icons";
-import { useClickOutside } from "@/helper/hooks/useClickOutSide";
-import { useState } from "react";
+import { BaseIcon } from "@/components/BaseIcon";
+import { useClickOutSide } from "@/helper/hooks/useClickOutSide";
+import { useRef, useState } from "react";
 
 export function SearchBar() {
   const [open, setOpen] = useState(false);
-  const modalRef = useClickOutside<HTMLDivElement>(() => setOpen(false));
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useClickOutSide({
+    ref: modalRef,
+    setValue: setOpen,
+    value: open,
+  });
+
   return (
     <div
       className="flex flex-row-reverse items-center w-[600px] h-[44px] rounded-lg px-4 gap-x-2 pt-1 bg-gray-100"
       onClick={() => setOpen(true)}
     >
-      <Icons name="ph:magnifying-glass" size={24} className="text-gray-400" />
+      <BaseIcon
+        name="ph:magnifying-glass"
+        size={24}
+        className="text-gray-400"
+      />
       {open ? (
         <div
           ref={modalRef}
