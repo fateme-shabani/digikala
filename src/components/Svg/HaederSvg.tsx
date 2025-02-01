@@ -7,8 +7,6 @@ export function HeaderSvg({ className }: HeaderSvgProps) {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       className={`${className}`}
-      
-      
     >
       <path
         d="M0 0 C924 0 1848 0 2800 0 C2800 33 2800 66 2800 100 C1876 100 952 100 0 100 C0 67 0 34 0 0 Z "

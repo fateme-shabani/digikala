@@ -1,9 +1,17 @@
+import { useEffect, useRef, useState } from "react";
+
 import { BaseIcon } from "@/components/BaseIcon";
 import { useClickOutSide } from "@/helper/hooks/useClickOutSide";
-import { useRef, useState } from "react";
+import { fetchSearchResults } from "@/services/endpoint";
+import { useDebounce } from "@/helper/hooks/useDebounce";
+import { LoadingSvg } from "@/components/LoadingSvg";
 
 export function SearchBar() {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [results, setResults] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
 
   useClickOutSide({
@@ -11,6 +19,23 @@ export function SearchBar() {
     setValue: setOpen,
     value: open,
   });
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    if (search.length < 2) {
+      setResults([]);
+      setError("");
+      return;
+    }
+    const fetchData = async () => {
+      setLoading(true);
+      const { data, error } = await fetchSearchResults(debouncedSearch);
+      setResults(data);
+      setError(error);
+      setLoading(false);
+    };
+    fetchData();
+  }, [debouncedSearch]);
 
   return (
     <div
@@ -25,25 +50,35 @@ export function SearchBar() {
       {open ? (
         <div
           ref={modalRef}
-          className="fixed bg-white flex flex-col items-end w-[600px] h-[400px] top-[70px] rounded-md shadow-md"
+          className="fixed bg-white flex flex-col items-end w-[600px] h-[400px] top-[70px] rounded-md shadow-md px-5"
         >
           <input
             type="text"
             placeholder="جستجو"
-            className="w-full p-2 text-gray-500 bg-transparent rounded-md text-right"
+            className="w-full p-2 text-gray-500 bg-transparent rounded-md text-right border-b border-blue-300"
+            autoComplete="off"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
-
-          <span>جستجوهای پرطرفدار</span>
-          {/* <div
-            ref={modalRef}
-            className="bg-red-400 p-4 rounded-lg shadow-lg w-[600px] h-44"
-          >
-            <input
-              type="text"
-              placeholder="جستجو"
-              className="w-full p-2 text-gray-500 bg-transparent rounded-md text-right"
-            />
-          </div> */}
+          {loading ? (
+            // <span className="text-gray-400">در حال جستجو...</span>
+            <LoadingSvg />
+          ) : error ? (
+            <span className="items-center m-auto text-red-500">{error}</span>
+          ) : results.length > 0 ? (
+            <ul className="w-full mt-2">
+              {results.map((item) => (
+                <li
+                  key={item.id}
+                  className="p-2 border-b text-right cursor-pointer hover:bg-gray-100"
+                >
+                  {item.title_fa}
+                </li>
+              ))}
+            </ul>
+          ) : debouncedSearch.length >= 2 ? (
+            <span className="text-gray-400">نتیجه‌ای یافت نشد</span>
+          ) : null}
         </div>
       ) : null}
       <span className="w-full p-2 text-gray-500 bg-transparent rounded-md text-right">
@@ -52,34 +87,3 @@ export function SearchBar() {
     </div>
   );
 }
-
-// export default function SearchBar() {
-
-//   return (
-//     <div className="relative">
-//       <button onClick={() => setOpen(true)} className="p-2">
-//         <Icons name="ph:magnifying-glass" size={24} className="text-gray-400" />
-//       </button>
-//       {open && (
-//         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-//           <div
-//             ref={modalRef}
-//             className="bg-white p-4 rounded-lg shadow-lg w-96"
-//           >
-//             <button
-//               onClick={() => setOpen(false)}
-//               className="absolute top-2 right-2 text-gray-500"
-//             >
-//               ✖
-//             </button>
-//             <input
-//               type="text"
-//               placeholder="جستجو..."
-//               className="w-full p-2 border rounded-md"
-//             />
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }

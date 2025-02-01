@@ -1,5 +1,5 @@
 import { HeaderSvg } from "../Svg/HaederSvg.tsx";
-import { Nav } from "./Nav/index.tsx";
+import { Nav } from "./nav/index.tsx";
 
 /**
  * @component
